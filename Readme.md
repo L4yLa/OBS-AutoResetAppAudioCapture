@@ -21,7 +21,15 @@
 
 ## 3. 使用方法
 
+
 1. OBSを先に起動して、WebSocketサーバーを有効にしておく
-2. AutoResetAppAudioCapture.exeをダブルクリックして起動
-3. IntervalSec[s]の周期で自動的に現在のソースにあるApplication audio captureを一瞬切ってノイズを回避します。特に操作は必要ありません。
+   * ツール＞WebSocketサーバー設定から「WebSocketサーバー設定」ウィンドウを開く
+   ![obs_websocket_1](https://github.com/L4yLa/OBS-AutoResetAppAudioCapture/assets/69630402/abaeebc2-bf69-4ce6-9e94-adcabb6ee04b)
+   * WebSocketサーバーを有効にするのチェックボックスを入れる
+   * サーバーポートが.envに設定した値と一致しているか確認(OBSPort)
+   * 認証を有効にするのチェックボックスを入れる
+   * サーバーパスワードが.envに設定した値を一致しているか確認(OBSPass)
+   ![obs_websocket_2](https://github.com/L4yLa/OBS-AutoResetAppAudioCapture/assets/69630402/980133ef-8278-4157-8926-ebd6be535abd)
+3. AutoResetAppAudioCapture.exeをダブルクリックして起動
+4. IntervalSec[s]の周期で自動的に現在のソースにあるApplication audio captureを一瞬切ってノイズを回避します。特に操作は必要ありません。
 
