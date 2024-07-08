@@ -1,16 +1,21 @@
 import sys
 import asyncio
 
-# .env
-import os
-from os.path import join, dirname
-from dotenv import load_dotenv
-load_dotenv()
-
 # OBS integration
 import simpleobsws as obsws
 # sched run
 import time
+
+# .env
+import os
+from os.path import join, dirname
+from dotenv import load_dotenv
+if os.path.exists('./.env') == False:
+	print('[ERROR] .envファイルが見つかりません。終了します。')
+	time.sleep(3)
+	sys.exit()
+load_dotenv()
+
 
 
 # data storage
