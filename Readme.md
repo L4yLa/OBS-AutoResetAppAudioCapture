@@ -1,7 +1,7 @@
 
 # OBS-AutoResetAppAudioCapture
 
-* OBS : v29以降（30.1.2で動作確認）
+* OBS : v29以降（30.2.0で動作確認）
 
 ## 1. 概要
 
