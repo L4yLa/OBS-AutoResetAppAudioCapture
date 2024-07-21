@@ -53,12 +53,23 @@ class BotGlobalData:
 				request = obsws.Request('GetSceneItemEnabled', {'sceneName': dat.currentscene, 'sceneItemId': idx})
 				ret = await dat.ws.call(request)
 				dat.currentwasapicaptureEN.append(ret.responseData['sceneItemEnabled'])
-		
+
+		# 対象ソースを無効にする
 		for idx, id in enumerate(dat.currentwasapicaptureID):
 			if dat.currentwasapicaptureEN[idx] == True:
+				# 対象ソースを無効にする
 				request = obsws.Request('SetSceneItemEnabled', {'sceneName': dat.currentscene, 'sceneItemId': id, 'sceneItemEnabled': False})
 				ret = await dat.ws.call(request)
-		await asyncio.sleep(1)
+				# 対象ソースを複製する
+				request = obsws.Request('DuplicateSceneItem', {'sceneName': dat.currentscene, 'sceneItemId': id, 'destinationSceneName': dat.currentscene})
+				ret = await dat.ws.call(request)
+				dupID = ret.responseData['sceneItemId']
+				# 対象ソースを削除する
+				request = obsws.Request('RemoveSceneItem', {'sceneName': dat.currentscene, 'sceneItemId': id})
+				ret = await dat.ws.call(request)
+				# 複製ソースにIDを差し替え
+				dat.currentwasapicaptureID[idx] = dupID
+		# 複製ソースの有効にする
 		for idx, id in enumerate(dat.currentwasapicaptureID):
 			if dat.currentwasapicaptureEN[idx] == True:
 				request = obsws.Request('SetSceneItemEnabled', {'sceneName': dat.currentscene, 'sceneItemId': id, 'sceneItemEnabled': True})
@@ -148,9 +159,7 @@ async def async_main():
 		print('エラー：IntervalSec（リセット間隔）には 5(秒) 以上を設定してください。')
 		sys.exit()
 	dat.timetask = asyncio.create_task(dat.resetAppAudioCapture())
-	print("初回時刻: ", time.strftime("%Y/%m/%d %H:%M:%S", time.localtime(time.time() + dat.delaytimef)))
-
-	print('', flush=True)
+	print("初回時刻: ", time.strftime("%Y/%m/%d %H:%M:%S", time.localtime(time.time() + dat.delaytimef)), flush=True)
 
 	return obsConnected
 
