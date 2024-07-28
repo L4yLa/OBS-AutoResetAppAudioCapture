@@ -11,9 +11,11 @@
 
 ## 2. 必要情報の設定
 
-1. .envファイルに以下の必要情報を記入して、AutoResetAppAudioCapture.exeと同じフォルダに入れる（example.envをリネーム＆編集してお使いください）<br>
+1. .envファイルに以下の必要情報を記入して、AutoResetAppAudioCapture.exeと同じフォルダに入れる <br>
+   "example.env" はひな型です。 **同じフォルダに入れるファイル名は ".env" にしてください。** このファイル名以外は読み込めませんのでご注意ください。
+<br>
    <>で囲われた部分を、お使いのOBSの設定に合わせて設定してください。
-
+   
    * OBSHost=<接続先OBSのIPアドレス。同じPCであればlocalhost>
    * OBSPort=<接続先OBSのWebSocketサーバーのサーバーポート>
    * OBSPass=<接続先OBSのWebSocketサーバーのサーバーパスワード>
